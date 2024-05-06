@@ -66,6 +66,8 @@
 
 * 工作区(写代码) -- git add -->  暂存区（临时存储） -- git commit --> 本地库（历史版本）
 
+## github gui
 
+* 下载地址： [Git - GUI Clients](https://git-scm.com/download/gui/windows)
 
 
