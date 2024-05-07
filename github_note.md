@@ -36,6 +36,8 @@
 
 ## git常用命令
 
+* [git 常用命令大全（附命令注释）_git命令大全-CSDN博客](https://blog.csdn.net/2401_84164527/article/details/137486475)
+
 ### 设置用户签名
 
 * git config --global user.name admin
@@ -66,8 +68,45 @@
 
 * 工作区(写代码) -- git add -->  暂存区（临时存储） -- git commit --> 本地库（历史版本）
 
-## github gui
+## git gui
 
 * 下载地址： [Git - GUI Clients](https://git-scm.com/download/gui/windows)
 
 
+
+## git与idea
+
+* java忽略模板 
+  
+  ```
+  # Compiled class file
+  *.class
+  
+  # Log file
+  *.log
+  
+  # BlueJ files
+  *.ctxt
+  
+  # Mobile Tools for Java (J2ME)
+  .mtj.tmp/
+  
+  # Package Files #
+  *.jar
+  *.war
+  *.nar
+  *.ear
+  *.zip
+  *.tar.gz
+  *.rar
+  
+  # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+  hs_err_pid*
+  replay_pid*
+  ```
+
+* 其他模板地址：[GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
+
+* 单分支冲突
+  
+  * 单个分支开发，往往会造成合并时出现冲突，需要多个版本和分支同时使用
