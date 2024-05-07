@@ -110,3 +110,60 @@
 * 单分支冲突
   
   * 单个分支开发，往往会造成合并时出现冲突，需要多个版本和分支同时使用
+
+
+
+# gitlab
+
+## 基础
+
+* 官网：
+  
+  * https://about.gitlab.com/
+  
+  * https://gitlab.cn/
+
+* 功能：
+  
+  * 源代码托管
+    
+    * 安全审计
+    
+    * 代码推送规则
+  
+  * CI/CD 部署运维
+    
+    * 流水线部署
+    
+    * 多流水线，多场景
+  
+  * 效能管理
+  
+  * 敏捷项目管理
+  
+  * DevSecOps 开发运维一体化
+  
+  * 云原生
+
+## 安装部署
+
+### 安装准备
+
+* 开启ssh
+  
+  * ```shell
+    sudo systemctl status sshd
+    sudo systemctl enable sshd
+    sudo systemctl start sshd
+    ```
+
+* 防火墙开启http\https
+  
+  * ```shell
+    sudo systemctl status firewalld
+    sudo firewall-cmd --permanent --add-service=http
+    sudo firewall-cmd --permanent --add-service=https
+    sudo systemctl reload firewalld
+    ```
+
+* 安装gitlab： curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
