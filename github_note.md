@@ -72,8 +72,6 @@
 
 * 下载地址： [Git - GUI Clients](https://git-scm.com/download/gui/windows)
 
-
-
 ## git与idea
 
 * java忽略模板 
@@ -111,8 +109,6 @@
   
   * 单个分支开发，往往会造成合并时出现冲突，需要多个版本和分支同时使用
 
-
-
 # gitlab
 
 ## 基础
@@ -147,7 +143,7 @@
 
 ## 安装部署
 
-### 安装准备
+### 安装准备（以debain为例）
 
 * 开启ssh
   
@@ -160,10 +156,77 @@
 * 防火墙开启http\https
   
   * ```shell
-    sudo systemctl status firewalld
-    sudo firewall-cmd --permanent --add-service=http
-    sudo firewall-cmd --permanent --add-service=https
-    sudo systemctl reload firewalld
+    # 开启ssh防火墙端口
+    sudo ufw allow 22/tcp
+    #开启http端口
+    sudo ufw allow 80/tcp
+    #开启https端口
+    sudo ufw allow 443/tcp
+    sudo ufw enable
     ```
 
-* 安装gitlab： curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+### 安装步骤（以kali linux为示例）
+
+* sudo apt-update
+  sudo apt-upgrade
+  sudo apt-get install -y curl openssh-server ca-certificates
+
+* curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+  sudo EXTERNAL_URL="http://kali.gitlab" apt-get install gitlab-ee
+
+* 国内版本：curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+  `sudo EXTERNAL_URL="http://debain.gitlab" apt-get install gitlab-ce`
+
+* sudo vim /etc/gitlab/gitlab.rb
+
+* 修改配置文件
+  
+  * external_url "http://虚拟机IP地址:9696"
+
+* sudo gitlab-ctl reconfigure
+
+* sudo gitlab-ctl restart
+
+### gitlab使用
+
+* 管理员账号密码
+  
+  * 账号：root
+  
+  * 密码： cat /etc/gitlab/initial_root_password  4smlozNtggohkbBGbZgANlcAiUq5jzqKo7LZr/ZVNts=
+  
+  * admin area -> Overview -> Users 可以修改密码
+
+* 修改时间
+  
+  * 用户偏好 -> 取消使用相对时间，就可以用具体的时间
+
+* 群组权限
+  
+  * owner：所有者，创建组的人员，可以开除管理员，但管理员无法操纵owner角色
+  
+  * maintainer：管理员，具备sudo的用户，一般给小组长或者产品经理
+  
+  * developer：干活的人，只能在自己组里面上传下载代码
+  
+  * repoter：只能看，不能改，一般给其他组的人，或者大牛
+  
+  * guest：匿名用户，相当于被删除了
+
+## idea连接gitlab
+
+### 准备工作
+
+* 安装gitlab projects插件
+
+* versionControl中就会有gilab选项
+
+* 添加gitlab用户
+
+* gitlab中需要先创建自己的令牌
+
+* 将gitlab url、令牌输入，选择ssh的连接方式
+
+* gitlab中配置自己的密钥
+
+* 设置-》仓库-》初始默认分支修改为初始推送后完全保护，之后只能合并到master方式来推送代码
